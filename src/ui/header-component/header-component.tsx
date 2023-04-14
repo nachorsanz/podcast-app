@@ -11,6 +11,12 @@ const headerStyle = css`
   width: 100%;
   top: 0;
   z-index: 1;
+
+  & > h1 {
+    margin: 0;
+    padding: 0 20px;
+    color: #007aff;
+  }
 `;
 
 interface HeaderProps {
@@ -18,7 +24,11 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ children }) => {
-  return <header css={headerStyle}>{children}</header>;
+  return (
+    <header css={headerStyle}>
+      <h1>{children}</h1>
+    </header>
+  );
 };
 
 export default Header;

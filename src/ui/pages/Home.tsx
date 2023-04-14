@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Card from '../common/card-component/card-component';
+import { css } from '@emotion/react';
+import Card from '../card-component/card-component';
 import { getTopPodcasts } from '../../api/get-data-from-api/get-data-from-api';
 import Header from '../header-component/header-component';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +8,13 @@ import { Podcast } from '../../domain/podcast';
 import { paginateArray } from '../../common/utils/utils';
 import Pagination from '../pagination-component/pagination-component';
 import Filters from '../filters-component/filters-component';
-
+const CardStyles = css`
+width: '280px',
+height: '240px',
+display: 'flex',
+justifyContent: 'center',
+alignItems: 'center',
+`;
 const Home = () => {
   const pageSize = 24;
   const [allPodcasts, setAllPodcasts] = useState<Podcast[]>([]);
@@ -75,64 +82,101 @@ const Home = () => {
     setFilteredPodcasts(filtered);
   }, [allPodcasts, filter]);
 
-  const handleFilter = (value: string) =>{
-    setFilter(value)
-    
-  }
+  const handleFilter = (value: string) => {
+    setFilter(value);
+  };
 
   return (
-    <div
-      className="App"
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        gap: '20px',
-        height: '100vh',
-        marginTop: '180px',
-      }}
-    >
+    <>
       <Header>PODCAST APP</Header>
-    <Filters 
-      handleFilter={handleFilter}
-      filter={filter}
-      total={filteredPodcasts.length}
-    />
-      {paginatedProducts[currentPage - 1]?.map((podcast: any) => {
-        return (
+      <div
+        style={{
+          width: '100%',
+          display: 'flex',
+          alignItems: 'flex-end',
+          marginTop: '90px',
+        }}
+      >
+        <Filters
+          handleFilter={handleFilter}
+          filter={filter}
+          total={filteredPodcasts.length}
+        />
+      </div>
+      <div
+        className="App"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: '100%',
+
+          height: '100vh',
+          marginTop: '90px',
+        }}
+      >
+        <div
+          style={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+          }}
+        >
           <div
-            key={podcast['im:name'].label}
             style={{
-              width: '280px',
-              height: '240px',
+              width: '100%',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: '20px',
             }}
-            onClick={() => handleNavigate(podcast.id.attributes['im:id'])}
           >
-            <Card
-              width="300px"
-              height="150px"
-              imageUrl={podcast['im:image'][2].label}
-              key={podcast['im:name'].label}
-            >
-              <h3>{podcast['im:name'].label.toUpperCase()}</h3>
-              <p>Author: {podcast['im:artist'].label}</p>
-            </Card>
+            {filteredPodcasts.length ? (
+              paginatedProducts[currentPage - 1]?.map((podcast: any) => {
+                return (
+                  <div
+                    key={podcast['im:name'].label}
+                    style={{
+                      width: '280px',
+                      height: '240px',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                    onClick={() =>
+                      handleNavigate(podcast.id.attributes['im:id'])
+                    }
+                  >
+                    <Card
+                      width="300px"
+                      height="150px"
+                      imageUrl={podcast['im:image'][2].label}
+                      key={podcast['im:name'].label}
+                    >
+                      <h3>{podcast['im:name'].label.toUpperCase()}</h3>
+                      <p>Author: {podcast['im:artist'].label}</p>
+                    </Card>
+                  </div>
+                );
+              })
+            ) : (
+              <>
+                <h1>Sorry, no results found</h1>
+              </>
+            )}
           </div>
-        );
-      })}
 
-      <Pagination
-        goToPreviousPage={goToPreviousPage}
-        goToNextPage={goToNextPage}
-        currentPage={currentPage}
-        paginatedProducts={paginatedProducts}
-      />
-    </div>
+          <Pagination
+            goToPreviousPage={goToPreviousPage}
+            goToNextPage={goToNextPage}
+            currentPage={currentPage}
+            paginatedProducts={paginatedProducts}
+          />
+        </div>
+      </div>
+    </>
   );
 };
 
