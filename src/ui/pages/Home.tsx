@@ -5,6 +5,7 @@ import Header from '../header-component/header-component';
 import { useNavigate } from 'react-router-dom';
 import { Podcast } from '../../domain/podcast';
 import { paginateArray } from '../../common/utils/utils';
+import Pagination from '../pagination-component/pagination-component';
 
 const Home = () => {
   const pageSize = 24;
@@ -78,7 +79,9 @@ const Home = () => {
       className="App"
       style={{
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'space-between',
+        alignItems: 'center',
         flexWrap: 'wrap',
         gap: '20px',
         height: '100vh',
@@ -120,15 +123,12 @@ const Home = () => {
         );
       })}
 
-      <button onClick={goToPreviousPage} disabled={currentPage === 1}>
-        Anterior
-      </button>
-      <button
-        onClick={goToNextPage}
-        disabled={currentPage === paginatedProducts.length}
-      >
-        Siguiente
-      </button>
+      <Pagination goToPreviousPage={goToPreviousPage} 
+                  goToNextPage={goToNextPage}
+                  currentPage={currentPage}
+                  paginatedProducts={paginatedProducts}
+      />
+    
     </div>
   );
 };
