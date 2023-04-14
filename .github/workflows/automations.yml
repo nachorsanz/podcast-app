@@ -1,0 +1,52 @@
+name: Podcast App
+
+on:
+  push:
+    branches: ['main', 'develop']
+
+jobs:
+  unit-tests:
+    name: Unit & UI-Unit-Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+      - run: npm i --location=global yarn
+      - run: yarn install --frozen-lockfile
+
+      - name: Unit Tests (using Jest)
+        run: yarn test:unit
+
+      - name: UI-Unit Tests (using React-Testing Lib)
+        run: yarn test:ui-jest
+  deploy:
+    name: 'Deploy'
+    runs-on: ubuntu-latest
+    needs: [unit-tests]
+    if: "contains(github.event.head_commit.message, 'deploy')"
+    strategy:
+      matrix:
+        node-version: [16]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm i --location=global yarn
+      - run: yarn install --frozen-lockfile
+      # Sets the branch name as environment variable
+      - uses: nelonoel/branch-name@v1.0.1
+      - uses: jsmrcaga/action-netlify-deploy@master
+        with:
+          build_directory: dist
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_ID }}
+          NETLIFY_DEPLOY_MESSAGE: 'Prod deploy v${{ github.ref }}'
+          NETLIFY_DEPLOY_TO_PROD: true
