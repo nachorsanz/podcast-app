@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { Podcast } from '../../domain/podcast';
 import { paginateArray } from '../../common/utils/utils';
 import Pagination from '../pagination-component/pagination-component';
+import Filters from '../filters-component/filters-component';
 
 const Home = () => {
   const pageSize = 24;
@@ -74,6 +75,11 @@ const Home = () => {
     setFilteredPodcasts(filtered);
   }, [allPodcasts, filter]);
 
+  const handleFilter = (value: string) =>{
+    setFilter(value)
+    
+  }
+
   return (
     <div
       className="App"
@@ -89,14 +95,11 @@ const Home = () => {
       }}
     >
       <Header>PODCAST APP</Header>
-      <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
-        <input
-          type="text"
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-          placeholder="Filter by title or author"
-        />
-      </div>
+    <Filters 
+      handleFilter={handleFilter}
+      filter={filter}
+      total={filteredPodcasts.length}
+    />
       {paginatedProducts[currentPage - 1]?.map((podcast: any) => {
         return (
           <div
@@ -123,12 +126,12 @@ const Home = () => {
         );
       })}
 
-      <Pagination goToPreviousPage={goToPreviousPage} 
-                  goToNextPage={goToNextPage}
-                  currentPage={currentPage}
-                  paginatedProducts={paginatedProducts}
+      <Pagination
+        goToPreviousPage={goToPreviousPage}
+        goToNextPage={goToNextPage}
+        currentPage={currentPage}
+        paginatedProducts={paginatedProducts}
       />
-    
     </div>
   );
 };
