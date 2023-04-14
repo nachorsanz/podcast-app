@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { css } from '@emotion/react';
 import Card from '../card-component/card-component';
 import { getTopPodcasts } from '../../api/get-data-from-api/get-data-from-api';
 import Header from '../header-component/header-component';
@@ -8,13 +7,7 @@ import { Podcast } from '../../domain/podcast';
 import { paginateArray } from '../../common/utils/utils';
 import Pagination from '../pagination-component/pagination-component';
 import Filters from '../filters-component/filters-component';
-const CardStyles = css`
-width: '280px',
-height: '240px',
-display: 'flex',
-justifyContent: 'center',
-alignItems: 'center',
-`;
+
 const Home = () => {
   const pageSize = 24;
   const [allPodcasts, setAllPodcasts] = useState<Podcast[]>([]);
