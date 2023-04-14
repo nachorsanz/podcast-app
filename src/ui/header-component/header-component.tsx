@@ -13,7 +13,7 @@ const headerStyle = css`
   z-index: 1;
 `;
 
-type HeaderProps = {
+interface HeaderProps {
   children: React.ReactNode;
 }
 

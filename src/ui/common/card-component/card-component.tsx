@@ -31,10 +31,11 @@ const cardStyle = (width: string, height: string) => css`
 `;
 
 const contentStyle = css`
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 `;
 
 const imageStyle = css`
@@ -42,7 +43,7 @@ const imageStyle = css`
   height: 150px;
   object-fit: cover;
   border-radius: 50%;
-  border: 5px solid #fff;
+  border: 2px solid #fff;
 `;
 
 export default Card;
