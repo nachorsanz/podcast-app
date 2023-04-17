@@ -6,7 +6,6 @@ import {
 import { formatDate, formatTime } from '../../common/utils/utils';
 import { useNavigate } from 'react-router-dom';
 import { css } from '@emotion/react';
-import Card from '../card-component/card-component';
 
 const headerStyles = css`
   color: #333;

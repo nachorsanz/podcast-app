@@ -24,7 +24,6 @@ const PodcastPage: React.FC = () => {
     id &&
       getPodcastDetail(id).then((response) => {
         response?.results && setPodcast(response.results.slice(1));
-        console.log(podcast);
       });
   }, []);
   return (
@@ -32,7 +31,7 @@ const PodcastPage: React.FC = () => {
       <Header>PODCAST APP</Header>
 
       <div css={containerStyles}>
-        <Card width="300px" height="auto">
+        <Card width="300px" height="min-content">
           <PodcastInfo podcast={state?.podcast} />
         </Card>
         <div

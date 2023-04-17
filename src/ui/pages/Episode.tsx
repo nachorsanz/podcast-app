@@ -71,7 +71,7 @@ const EpisodePage: React.FC = () => {
       <Header>PODCAST APP</Header>
 
       <div css={ContainerStyles}>
-        <Card width="300px" height="auto">
+        <Card width="300px" height="min-content">
           <PodcastInfo podcast={mainPodcast} />
         </Card>
         <div css={cardStyles}>
