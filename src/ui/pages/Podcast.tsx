@@ -3,10 +3,14 @@ import { css } from '@emotion/react';
 import PodcastDetail from '../podcast-detail/podcast-detail-component';
 import Header from '../header-component/header-component';
 import Card from '../card-component/card-component';
-import { useParams } from 'react-router-dom';
-import { Podcast } from '../../domain/podcast';
+import { useParams, useLocation } from 'react-router-dom';
+import {
+  Podcast,
+  PodcastDetail as PodcastDetailType,
+} from '../../domain/podcast';
 import { getPodcastDetail } from '../../api/get-data-from-api/get-data-from-api';
 import { findPodcastById } from '../../common/utils/utils';
+import PodcastInfo from '../podcast-info/podcast-info-component';
 
 const ContainerStyles = css`
   display: flex;
@@ -16,25 +20,44 @@ const ContainerStyles = css`
 
 const PodcastPage: React.FC = () => {
   const { id } = useParams();
-  const [podcast, setPodcast] = useState<any[]>();
+  const { state } = useLocation();
+
+  const [podcast, setPodcast] = useState<PodcastDetailType[]>();
 
   useEffect(() => {
     id &&
       getPodcastDetail(id).then((response) => {
-        response?.results && setPodcast(response.results);
+        response?.results && setPodcast(response.results.slice(1));
         console.log(podcast);
       });
-  }, [id]);
+  }, []);
   return (
     <>
       <Header>PODCAST APP</Header>
       <div css={ContainerStyles}>
-        <Card width="300px" height="600px">
-          <h2>Titulo</h2>
+        <Card width="300px" height="auto">
+          <PodcastInfo podcast={state?.podcast} />
         </Card>
-        <Card width="800px" height="auto">
+        <div
+          css={css`
+            display: flex;
+            flex-direction: column;
+            width: 800px;
+            height: auto;
+            padding: 20px;
+            margin-top: 20px;
+          `}
+        >
+          <div
+            css={css`
+              font-size: 24px;
+              font-weight: bold;
+            `}
+          >
+            Episodes: {podcast?.length}
+          </div>
           <PodcastDetail podcast={podcast ?? []} />
-        </Card>
+        </div>
       </div>
     </>
   );

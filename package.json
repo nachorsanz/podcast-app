@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "start:dev": "yarn -f .env.development vite --port 5173 --open --mode development",
-    "start:prod": "yarn -f .env.production vite --port 5173 --open --mode production",
+    "start:dev": "yarn -f .env.development vite --port 8080 --open --mode development",
+    "start:prod": "yarn -f .env.production vite --port 8080 --open --mode production",
     "preview": "vite preview",
     "test:ui-jest": "jest --config=\"./jest.config.ts\" --testPathPattern=\".*ui-jest\\.spec\\..*\" --testEnvironment=\"jsdom\"",
     "test:unit": "jest --config=\"./jest.config.ts\" --testPathPattern=\".*unit\\.spec\\..*\" --env=node",

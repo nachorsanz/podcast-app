@@ -60,7 +60,7 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   const handleNavigate = (id: string, podcast: Podcast) => {
-    navigate(`/podcast/${id}`, { state: { podcast } });
+    navigate(`/podcast/${id}`, { state: { podcast: podcast } });
   };
 
   useEffect(() => {
