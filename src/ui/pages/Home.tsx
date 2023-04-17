@@ -8,7 +8,7 @@ import { paginateArray } from '../../common/utils/utils';
 import Pagination from '../pagination-component/pagination-component';
 import Filters from '../filters-component/filters-component';
 
-const Home = () => {
+const HomePage = () => {
   const pageSize = 24;
   const [allPodcasts, setAllPodcasts] = useState<Podcast[]>([]);
   const [cachedResponse, setCachedResponse] = useState<string | null>(
@@ -59,12 +59,12 @@ const Home = () => {
 
   const navigate = useNavigate();
 
-  const handleNavigate = (id: string) => {
-    navigate(`/podcast/${id}`);
+  const handleNavigate = (id: string, podcast: Podcast) => {
+    navigate(`/podcast/${id}`, { state: { podcast } });
   };
 
   useEffect(() => {
-    const filtered = allPodcasts.filter((podcast: any) => {
+    const filtered = allPodcasts.filter((podcast: Podcast) => {
       const title = podcast['im:name'].label.toLowerCase();
       const author = podcast['im:artist'].label.toLowerCase();
       const filterLowerCase = filter.toLowerCase();
@@ -139,7 +139,7 @@ const Home = () => {
                       alignItems: 'center',
                     }}
                     onClick={() =>
-                      handleNavigate(podcast.id.attributes['im:id'])
+                      handleNavigate(podcast.id.attributes['im:id'], podcast)
                     }
                   >
                     <Card
@@ -148,7 +148,17 @@ const Home = () => {
                       imageUrl={podcast['im:image'][2].label}
                       key={podcast['im:name'].label}
                     >
-                      <h3>{podcast['im:name'].label.toUpperCase()}</h3>
+                      <h3
+                        style={{
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          width: '240px',
+                          textAlign: 'center',
+                        }}
+                      >
+                        {podcast['im:name'].label.toUpperCase()}
+                      </h3>
                       <p>Author: {podcast['im:artist'].label}</p>
                     </Card>
                   </div>
@@ -173,4 +183,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

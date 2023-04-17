@@ -1,18 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Home from './ui/pages/Home';
+import HomePage from './ui/pages/Home';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './reset.css';
-import PodcastDetail from './ui/podcast-detail/podcast-detail-component';
+import PodcastPage from './ui/pages/Podcast';
+import EpisodePage from './ui/pages/Episode';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
+    element: <HomePage />,
   },
   {
     path: '/podcast/:id',
-    element: <PodcastDetail />,
+    element: <PodcastPage />,
+  },
+  {
+    path: '/podcast/:id/episode/:idEpisode',
+    element: <EpisodePage />,
   },
 ]);
 

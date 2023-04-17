@@ -39,6 +39,7 @@ const paginationContainer = css`
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+  margin-bottom: 30px;
 `;
 
 const paginationButton = css`
