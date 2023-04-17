@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { useNavigate } from 'react-router-dom';
 
 const headerStyle = css`
   display: flex;
@@ -24,8 +25,9 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ children }) => {
+  const navigate = useNavigate();
   return (
-    <header css={headerStyle}>
+    <header onClick={() => navigate('/')} css={headerStyle}>
       <h1>{children}</h1>
     </header>
   );

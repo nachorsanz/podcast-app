@@ -1,5 +1,8 @@
 import React from 'react';
-import { Podcast, PodcastDetail as PodcastDetailType } from '../../domain/podcast';
+import {
+  Podcast,
+  PodcastDetail as PodcastDetailType,
+} from '../../domain/podcast';
 import { formatDate, formatTime } from '../../common/utils/utils';
 import { useNavigate } from 'react-router-dom';
 import { css } from '@emotion/react';
@@ -53,13 +56,30 @@ const ContainerStyles = css`
 
   background-color: #fff;
 `;
+const buttonStyles = css`
+  background-color: #f5f5f5;
+  border: 1px solid #f5f5f5;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  &:hover {
+    background-color: #e5e5e5;
+    border: 1px solid #e5e5e5;
+  }
+`;
 
 interface PodcastDetailProps {
   podcast: PodcastDetailType[];
-  mainPodcast: Podcast
+  mainPodcast: Podcast;
 }
 
-const PodcastDetail: React.FC<PodcastDetailProps> = ({ podcast, mainPodcast }) => {
+const PodcastDetail: React.FC<PodcastDetailProps> = ({
+  podcast,
+  mainPodcast,
+}) => {
   const navigate = useNavigate();
 
   const handleRedirectToEpisodeDetail = (podcast: PodcastDetailType) => {
@@ -106,6 +126,17 @@ const PodcastDetail: React.FC<PodcastDetailProps> = ({ podcast, mainPodcast }) =
               </li>
             ))}
         </ul>
+      </div>
+      <div
+        style={{
+          width: '100%',
+          display: 'flex',
+          alignItems: 'flex-end',
+        }}
+      >
+        <button css={buttonStyles} onClick={() => navigate('/')}>
+          VOLVER AL LISTADO
+        </button>
       </div>
     </div>
   );

@@ -4,13 +4,11 @@ import PodcastDetail from '../podcast-detail/podcast-detail-component';
 import Header from '../header-component/header-component';
 import Card from '../card-component/card-component';
 import { useParams, useLocation } from 'react-router-dom';
-import {
-  PodcastDetail as PodcastDetailType,
-} from '../../domain/podcast';
+import { PodcastDetail as PodcastDetailType } from '../../domain/podcast';
 import { getPodcastDetail } from '../../api/get-data-from-api/get-data-from-api';
 import PodcastInfo from '../podcast-info/podcast-info-component';
 
-const ContainerStyles = css`
+const containerStyles = css`
   display: flex;
   justify-content: space-around;
   margin-top: 180px;
@@ -32,7 +30,8 @@ const PodcastPage: React.FC = () => {
   return (
     <>
       <Header>PODCAST APP</Header>
-      <div css={ContainerStyles}>
+
+      <div css={containerStyles}>
         <Card width="300px" height="auto">
           <PodcastInfo podcast={state?.podcast} />
         </Card>
