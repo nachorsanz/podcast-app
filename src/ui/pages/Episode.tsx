@@ -1,8 +1,83 @@
 import React from 'react';
 import { css } from '@emotion/react';
+import { useLocation, Link } from 'react-router-dom';
+import PodcastInfo from '../podcast-info/podcast-info-component';
+import Header from '../header-component/header-component';
+import Card from '../card-component/card-component';
+
+const ContainerStyles = css`
+  display: flex;
+  justify-content: space-around;
+  margin-top: 180px;
+`;
+const cardStyles = css`
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  width: 800px;
+  height: 500px;
+
+display: flex;
+flex-direction: column;
+  justify-content: space-around;
+  h2 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+`;
+
+const PodcastInfoStyles = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+
+
+
+  span {
+    width: 700px;
+    height: 300px;
+    text-align: justify;
+    margin-bottom: 10px;
+    overflow: scroll;
+    text-overflow: ellipsis;
+    
+
+  }
+
+`;
 
 const EpisodePage: React.FC = () => {
-  return <div></div>;
+  const { state } = useLocation();
+  const podcast = state?.podcast;
+  const mainPodcast = state?.mainPodcast;
+  
+
+  return (<>
+        <Header>PODCAST APP</Header>
+        
+    <div css={ContainerStyles}>
+    <Card width="300px" height="auto">
+          <PodcastInfo podcast={mainPodcast} />
+        </Card>
+      <div css={cardStyles}>
+          <h2>{podcast?.collectionName} - {podcast?.trackName}</h2>
+        <div css={PodcastInfoStyles}>
+          <span dangerouslySetInnerHTML={{__html: podcast?.description}}></span>
+        </div>
+        <div>
+          <audio controls>
+            <source src={podcast?.episodeUrl} type="audio/mp3" />
+          </audio>
+        </div>
+      </div>
+    </div>
+        </>
+  );
 };
 
 export default EpisodePage;

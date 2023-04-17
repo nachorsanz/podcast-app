@@ -14,8 +14,8 @@ export const findPodcastById = (id: string, podcasts: Podcast[]) => {
 };
 
 export function formatTime(milliseconds: number): string {
-  const totalSeconds = Math.floor(milliseconds / 1000);
-  const minutes = Math.floor(totalSeconds / 60);
+  const totalSeconds = Math.round(milliseconds / 1000);
+  const minutes = Math.round(totalSeconds / 60);
   const seconds = totalSeconds % 60;
 
   const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;

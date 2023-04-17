@@ -1,5 +1,5 @@
 import React from 'react';
-import { PodcastDetail as PodcastDetailType } from '../../domain/podcast';
+import { Podcast, PodcastDetail as PodcastDetailType } from '../../domain/podcast';
 import { formatDate, formatTime } from '../../common/utils/utils';
 import { useNavigate } from 'react-router-dom';
 import { css } from '@emotion/react';
@@ -56,14 +56,15 @@ const ContainerStyles = css`
 
 interface PodcastDetailProps {
   podcast: PodcastDetailType[];
+  mainPodcast: Podcast
 }
 
-const PodcastDetail: React.FC<PodcastDetailProps> = ({ podcast }) => {
+const PodcastDetail: React.FC<PodcastDetailProps> = ({ podcast, mainPodcast }) => {
   const navigate = useNavigate();
 
   const handleRedirectToEpisodeDetail = (podcast: PodcastDetailType) => {
     navigate(`/podcast/${podcast?.collectionId}/episode/${podcast?.trackId}`, {
-      state: { podcast: podcast },
+      state: { podcast: podcast, mainPodcast: mainPodcast },
     });
   };
   return (

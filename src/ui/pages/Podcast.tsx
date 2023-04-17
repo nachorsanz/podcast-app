@@ -5,11 +5,9 @@ import Header from '../header-component/header-component';
 import Card from '../card-component/card-component';
 import { useParams, useLocation } from 'react-router-dom';
 import {
-  Podcast,
   PodcastDetail as PodcastDetailType,
 } from '../../domain/podcast';
 import { getPodcastDetail } from '../../api/get-data-from-api/get-data-from-api';
-import { findPodcastById } from '../../common/utils/utils';
 import PodcastInfo from '../podcast-info/podcast-info-component';
 
 const ContainerStyles = css`
@@ -56,7 +54,7 @@ const PodcastPage: React.FC = () => {
           >
             Episodes: {podcast?.length}
           </div>
-          <PodcastDetail podcast={podcast ?? []} />
+          <PodcastDetail podcast={podcast ?? []} mainPodcast={state.podcast} />
         </div>
       </div>
     </>
