@@ -1,6 +1,5 @@
 import { generateMockPodcast } from '../../api/mock/mock-factory';
-import { Podcast } from '../../domain/podcast';
-import { paginateArray, findPodcastById, formatTime, formatDate } from './utils';
+import { paginateArray, formatTime, formatDate } from './utils';
 
 describe('paginateArray function', () => {
   test('should return an empty array when the input array is empty', () => {

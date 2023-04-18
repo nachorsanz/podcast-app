@@ -14,9 +14,12 @@ const cardStyles = css`
   background-color: white;
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
   width: 800px;
-  height: 500px;
+  height: 540px;
 
   display: flex;
   flex-direction: column;
@@ -46,8 +49,9 @@ const PodcastInfoStyles = css`
 `;
 
 const buttonStyles = css`
-  background-color: #f5f5f5;
-  border: 1px solid #f5f5f5;
+  background-color: #007aff;
+  border: 1px solid #007aff;
+  color: #fff;
   border-radius: 5px;
   padding: 10px;
   margin: 10px;
@@ -55,8 +59,8 @@ const buttonStyles = css`
   font-weight: bold;
   cursor: pointer;
   &:hover {
-    background-color: #e5e5e5;
-    border: 1px solid #e5e5e5;
+    background-color: #0062cc;
+    border: 1px solid #0062cc;
   }
 `;
 

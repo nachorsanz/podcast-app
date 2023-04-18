@@ -1,4 +1,4 @@
-export type Podcast = {
+export type PodcastType = {
   'im:name': {
     label: string;
   };
@@ -65,7 +65,7 @@ export type Podcast = {
   };
 };
 
-export type PodcastDetail = {
+export type PodcastDetailType = {
   country: string;
   artworkUrl60: string;
   closedCaptioning: string;

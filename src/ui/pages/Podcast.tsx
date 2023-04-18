@@ -4,7 +4,7 @@ import PodcastDetail from '../podcast-detail/podcast-detail-component';
 import Header from '../header-component/header-component';
 import Card from '../card-component/card-component';
 import { useParams, useLocation } from 'react-router-dom';
-import { PodcastDetail as PodcastDetailType } from '../../domain/podcast';
+import {  PodcastDetailType } from '../../domain/podcast';
 import { getPodcastDetail } from '../../api/get-data-from-api/get-data-from-api';
 import PodcastInfo from '../podcast-info/podcast-info-component';
 
@@ -17,15 +17,45 @@ const containerStyles = css`
 const PodcastPage: React.FC = () => {
   const { id } = useParams();
   const { state } = useLocation();
-
+  const [cachedResponse, setCachedResponse] = useState<string | null>(
+    localStorage.getItem('cachedResponse'),
+  );
   const [podcast, setPodcast] = useState<PodcastDetailType[]>();
 
   useEffect(() => {
-    id &&
-      getPodcastDetail(id).then((response) => {
-        response?.results && setPodcast(response.results.slice(1));
-      });
-  }, []);
+
+    if (cachedResponse) {
+
+        const cachedDate = JSON.parse(cachedResponse).date;
+        const now = new Date().toISOString();
+        const difference = new Date(now).getTime() - new Date(cachedDate).getTime();
+        const differenceInHours = Math.floor(difference / 1000 / 60 / 60);
+        if (differenceInHours >= 24) {
+            localStorage.removeItem('cachedResponse');
+            setCachedResponse(null);
+            id && getPodcastDetail(id).then((data) => {
+            const result = data.results.slice(1)
+            setPodcast(result);
+            localStorage.setItem('cacheDetail', JSON.stringify({
+                date: new Date().toISOString(),
+                response: result,
+                }));
+            });
+        } else {
+            id && getPodcastDetail(id).then((data) => {
+                const result = data.results.slice(1)
+                setPodcast(result);
+                localStorage.setItem('cacheDetail', JSON.stringify({
+                    date: new Date().toISOString(),
+                    response: result,
+                    }));
+                });
+        }
+
+
+    } 
+  
+  }, [id, cachedResponse]);
   return (
     <>
       <Header>PODCAST APP</Header>

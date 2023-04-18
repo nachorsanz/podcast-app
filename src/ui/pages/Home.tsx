@@ -3,19 +3,19 @@ import Card from '../card-component/card-component';
 import { getTopPodcasts } from '../../api/get-data-from-api/get-data-from-api';
 import Header from '../header-component/header-component';
 import { useNavigate } from 'react-router-dom';
-import { Podcast } from '../../domain/podcast';
+import { PodcastType } from '../../domain/podcast';
 import { paginateArray } from '../../common/utils/utils';
 import Pagination from '../pagination-component/pagination-component';
 import Filters from '../filters-component/filters-component';
 
 const HomePage = () => {
   const pageSize = 24;
-  const [allPodcasts, setAllPodcasts] = useState<Podcast[]>([]);
+  const [allPodcasts, setAllPodcasts] = useState<PodcastType[]>([]);
   const [cachedResponse, setCachedResponse] = useState<string | null>(
     localStorage.getItem('cachedResponse'),
   );
   const [filter, setFilter] = useState('');
-  const [filteredPodcasts, setFilteredPodcasts] = useState<Podcast[]>([]);
+  const [filteredPodcasts, setFilteredPodcasts] = useState<PodcastType[]>([]);
   const paginatedProducts = paginateArray(filteredPodcasts, pageSize);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -45,11 +45,14 @@ const HomePage = () => {
     const cachedDate = cachedResponse ? JSON.parse(cachedResponse).date : null;
     const difference = new Date(now).getTime() - new Date(cachedDate).getTime();
     const differenceInHours = Math.floor(difference / 1000 / 60 / 60);
-    if (differenceInHours > 1) {
+    if (differenceInHours >= 24) {
       localStorage.removeItem('cachedResponse');
       setCachedResponse(null);
+      fetchTopPodcasts();
+    } else {
+      cachedResponse && setAllPodcasts(JSON.parse(cachedResponse).response);
     }
-    cachedResponse && setAllPodcasts(JSON.parse(cachedResponse).response);
+ 
   };
 
   useEffect(() => {
@@ -59,12 +62,12 @@ const HomePage = () => {
 
   const navigate = useNavigate();
 
-  const handleNavigate = (id: string, podcast: Podcast) => {
+  const handleNavigate = (id: string, podcast: PodcastType) => {
     navigate(`/podcast/${id}`, { state: { podcast: podcast } });
   };
 
   useEffect(() => {
-    const filtered = allPodcasts.filter((podcast: Podcast) => {
+    const filtered = allPodcasts.filter((podcast: PodcastType) => {
       const title = podcast['im:name'].label.toLowerCase();
       const author = podcast['im:artist'].label.toLowerCase();
       const filterLowerCase = filter.toLowerCase();

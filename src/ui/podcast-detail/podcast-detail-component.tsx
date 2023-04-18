@@ -1,7 +1,7 @@
 import React from 'react';
 import {
-  Podcast,
-  PodcastDetail as PodcastDetailType,
+  PodcastType,
+   PodcastDetailType,
 } from '../../domain/podcast';
 import { formatDate, formatTime } from '../../common/utils/utils';
 import { useNavigate } from 'react-router-dom';
@@ -37,6 +37,7 @@ const listItemStyles = css`
 
 const nameStyles = css`
   color: blue;
+  cursor: pointer;
 `;
 
 const ContainerStyles = css`
@@ -55,9 +56,16 @@ const ContainerStyles = css`
 
   background-color: #fff;
 `;
+
+const buttonContainer = css`
+width: 100%;
+  display: flex;
+  align-items: flex-end;
+  `;
 const buttonStyles = css`
-  background-color: #f5f5f5;
-  border: 1px solid #f5f5f5;
+  background-color: #007aff;
+  border: 1px solid #007aff;
+  color: #fff;
   border-radius: 5px;
   padding: 10px;
   margin: 10px;
@@ -65,14 +73,20 @@ const buttonStyles = css`
   font-weight: bold;
   cursor: pointer;
   &:hover {
-    background-color: #e5e5e5;
-    border: 1px solid #e5e5e5;
+    background-color: #0062cc;
+    border: 1px solid #0062cc;
   }
 `;
 
+const headeContainerStyles = css`
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+`
+
 interface PodcastDetailProps {
   podcast: PodcastDetailType[];
-  mainPodcast: Podcast;
+  mainPodcast: PodcastType;
 }
 
 const PodcastDetail: React.FC<PodcastDetailProps> = ({
@@ -92,14 +106,10 @@ const PodcastDetail: React.FC<PodcastDetailProps> = ({
         <div css={headerContainer}>
           <div css={headerStyles}>Title</div>
           <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              gap: '20px',
-            }}
+            css={headeContainerStyles}
           >
             <div css={headerStyles}>Date</div>
-            <div css={headerStyles}>Duration</div>
+            <div css={headerStyles}>Time</div>
           </div>
         </div>
         <ul css={listStyles}>
@@ -113,11 +123,7 @@ const PodcastDetail: React.FC<PodcastDetailProps> = ({
                   {podcast.trackName}
                 </div>
                 <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    gap: '30px',
-                  }}
+                  css={headeContainerStyles}
                 >
                   <p>{formatDate(podcast.releaseDate)}</p>
                   <p>{formatTime(podcast.trackTimeMillis)}</p>
@@ -127,11 +133,7 @@ const PodcastDetail: React.FC<PodcastDetailProps> = ({
         </ul>
       </div>
       <div
-        style={{
-          width: '100%',
-          display: 'flex',
-          alignItems: 'flex-end',
-        }}
+        css={buttonContainer}
       >
         <button css={buttonStyles} onClick={() => navigate('/')}>
           VOLVER AL LISTADO

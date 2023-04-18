@@ -1,7 +1,7 @@
-import { Podcast } from '../../domain/podcast';
+import { PodcastType } from '../../domain/podcast';
 
-export const paginateArray = (podcasts: Podcast[], pageSize: number) => {
-  return podcasts.reduce((acc: Podcast[][], val: Podcast, i: number) => {
+export const paginateArray = (podcasts: PodcastType[], pageSize: number) => {
+  return podcasts.reduce((acc: PodcastType[][], val: PodcastType, i: number) => {
     const pageIndex = Math.floor(i / pageSize);
     const page = acc[pageIndex] || (acc[pageIndex] = []);
     page.push(val);
@@ -9,9 +9,6 @@ export const paginateArray = (podcasts: Podcast[], pageSize: number) => {
   }, []);
 };
 
-export const findPodcastById = (id: string, podcasts: Podcast[]) => {
-  return podcasts.find((podcast) => podcast.id.attributes['im:id'] === id);
-};
 
 export function formatTime(milliseconds: number): string {
   const totalSeconds = Math.round(milliseconds / 1000);
@@ -30,4 +27,12 @@ export const formatDate = (isoDate: string): string => {
   const month = (date.getMonth() + 1).toString().padStart(2, '0');
   const year = date.getFullYear();
   return `${day}/${month}/${year}`;
+};
+
+
+export const has24HoursPassed = (dateString: string): boolean => {
+  const ONE_DAY_IN_MS = 24 * 60 * 60 * 1000; // Number of milliseconds in a day
+  const now = new Date();
+  const date = new Date(dateString);
+  return now.getTime() - date.getTime() >= ONE_DAY_IN_MS;
 };
