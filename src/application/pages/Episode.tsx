@@ -1,9 +1,9 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import PodcastInfo from '../podcast-info/podcast-info-component';
-import Header from '../header-component/header-component';
-import Card from '../card-component/card-component';
+import PodcastInfo from '../features/podcast-info/podcast-info-component';
+import Header from '../features/header-component/header-component';
+import Card from '../features/card-component/card-component';
 
 const ContainerStyles = css`
   display: flex;

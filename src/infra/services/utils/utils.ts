@@ -1,4 +1,4 @@
-import { PodcastType } from '../../domain/podcast';
+import { PodcastType } from '../../../domain/podcast';
 
 export const paginateArray = (podcasts: PodcastType[], pageSize: number) => {
   return podcasts.reduce((acc: PodcastType[][], val: PodcastType, i: number) => {

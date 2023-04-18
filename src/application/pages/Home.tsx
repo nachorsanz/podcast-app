@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Card from '../card-component/card-component';
-import { getTopPodcasts } from '../../api/get-data-from-api/get-data-from-api';
-import Header from '../header-component/header-component';
+import Card from '../features/card-component/card-component';
+import { getTopPodcasts } from '../../infra/api/get-data-from-api/get-data-from-api';
+import Header from '../features/header-component/header-component';
 import { useNavigate } from 'react-router-dom';
 import { PodcastType } from '../../domain/podcast';
-import { paginateArray } from '../../common/utils/utils';
-import Pagination from '../pagination-component/pagination-component';
-import Filters from '../filters-component/filters-component';
+import { paginateArray } from '../../infra/services/utils/utils';
+import Pagination from '../features/pagination-component/pagination-component';
+import Filters from '../features/filters-component/filters-component';
 
 const HomePage = () => {
   const pageSize = 24;

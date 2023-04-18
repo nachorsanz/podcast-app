@@ -1,9 +1,9 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import { Podcast } from '../../domain/podcast';
+import { PodcastType } from '../../../domain/podcast';
 
 type PodcastInfoProps = {
-  podcast: Podcast;
+  podcast: PodcastType;
 };
 
 const PodcastInfoStyles = css`

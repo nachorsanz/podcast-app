@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
-import PodcastDetail from '../podcast-detail/podcast-detail-component';
-import Header from '../header-component/header-component';
-import Card from '../card-component/card-component';
+import PodcastDetail from '../features/podcast-detail/podcast-detail-component';
+import Header from '../features/header-component/header-component';
+import Card from '../features/card-component/card-component';
 import { useParams, useLocation } from 'react-router-dom';
 import {  PodcastDetailType } from '../../domain/podcast';
-import { getPodcastDetail } from '../../api/get-data-from-api/get-data-from-api';
-import PodcastInfo from '../podcast-info/podcast-info-component';
+import { getPodcastDetail } from '../../infra/api/get-data-from-api/get-data-from-api';
+import PodcastInfo from '../features/podcast-info/podcast-info-component';
 
 const containerStyles = css`
   display: flex;

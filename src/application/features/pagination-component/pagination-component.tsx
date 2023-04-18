@@ -1,10 +1,10 @@
 import { css } from '@emotion/react';
-import { Podcast } from '../../domain/podcast';
+import { PodcastType } from '../../../domain/podcast';
 
 interface PaginationProps {
   goToPreviousPage: () => void;
   goToNextPage: () => void;
-  paginatedProducts: Podcast[][];
+  paginatedProducts: PodcastType[][];
   currentPage: number;
 }
 

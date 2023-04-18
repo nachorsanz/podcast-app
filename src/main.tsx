@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import HomePage from './ui/pages/Home';
+import HomePage from './application/pages/Home';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './reset.css';
-import PodcastPage from './ui/pages/Podcast';
-import EpisodePage from './ui/pages/Episode';
+import PodcastPage from './application/pages/Podcast';
+import EpisodePage from './application/pages/Episode';
 
 const router = createBrowserRouter([
   {
