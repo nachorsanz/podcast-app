@@ -8,19 +8,31 @@ describe('paginateArray function', () => {
   });
 
   test('should return an array with the same elements when pageSize is greater than the length of the input array', () => {
-    const input = [generateMockPodcast(), generateMockPodcast(), generateMockPodcast()];
+    const input = [
+      generateMockPodcast(),
+      generateMockPodcast(),
+      generateMockPodcast(),
+    ];
     const result = paginateArray(input, 10);
     expect(result).toEqual([input]);
   });
 
   test('should return an array of arrays with the specified number of elements', () => {
-    const input = [generateMockPodcast(), generateMockPodcast(), generateMockPodcast(), generateMockPodcast(), generateMockPodcast()];
+    const input = [
+      generateMockPodcast(),
+      generateMockPodcast(),
+      generateMockPodcast(),
+      generateMockPodcast(),
+      generateMockPodcast(),
+    ];
     const result = paginateArray(input, 2);
-    expect(result).toEqual([[input[0], input[1]], [input[2], input[3]], [input[4]]]);
+    expect(result).toEqual([
+      [input[0], input[1]],
+      [input[2], input[3]],
+      [input[4]],
+    ]);
   });
 });
-
-
 
 describe('formatTime function', () => {
   test('should return "00:00" when the input is 0', () => {

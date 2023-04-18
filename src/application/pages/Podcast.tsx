@@ -4,7 +4,7 @@ import PodcastDetail from '../features/podcast-detail/podcast-detail-component';
 import Header from '../features/header-component/header-component';
 import Card from '../features/card-component/card-component';
 import { useParams, useLocation } from 'react-router-dom';
-import {  PodcastDetailType } from '../../domain/models/podcast';
+import { PodcastDetailType } from '../../domain/models/podcast';
 import { getPodcastDetail } from '../../infra/api/get-data-from-api/get-data-from-api';
 import PodcastInfo from '../features/podcast-info/podcast-info-component';
 
@@ -23,38 +23,42 @@ const PodcastPage: React.FC = () => {
   const [podcast, setPodcast] = useState<PodcastDetailType[]>();
 
   useEffect(() => {
-
     if (cachedResponse) {
-
-        const cachedDate = JSON.parse(cachedResponse).date;
-        const now = new Date().toISOString();
-        const difference = new Date(now).getTime() - new Date(cachedDate).getTime();
-        const differenceInHours = Math.floor(difference / 1000 / 60 / 60);
-        if (differenceInHours >= 24) {
-            localStorage.removeItem('cachedResponse');
-            setCachedResponse(null);
-            id && getPodcastDetail(id).then((data) => {
-            const result = data.results.slice(1)
+      const cachedDate = JSON.parse(cachedResponse).date;
+      const now = new Date().toISOString();
+      const difference =
+        new Date(now).getTime() - new Date(cachedDate).getTime();
+      const differenceInHours = Math.floor(difference / 1000 / 60 / 60);
+      if (differenceInHours >= 24) {
+        localStorage.removeItem('cachedResponse');
+        setCachedResponse(null);
+        id &&
+          getPodcastDetail(id).then((data) => {
+            const result = data.results.slice(1);
             setPodcast(result);
-            localStorage.setItem('cacheDetail', JSON.stringify({
+            localStorage.setItem(
+              'cacheDetail',
+              JSON.stringify({
                 date: new Date().toISOString(),
                 response: result,
-                }));
-            });
-        } else {
-            id && getPodcastDetail(id).then((data) => {
-                const result = data.results.slice(1)
-                setPodcast(result);
-                localStorage.setItem('cacheDetail', JSON.stringify({
-                    date: new Date().toISOString(),
-                    response: result,
-                    }));
-                });
-        }
-
-
-    } 
-  
+              }),
+            );
+          });
+      } else {
+        id &&
+          getPodcastDetail(id).then((data) => {
+            const result = data.results.slice(1);
+            setPodcast(result);
+            localStorage.setItem(
+              'cacheDetail',
+              JSON.stringify({
+                date: new Date().toISOString(),
+                response: result,
+              }),
+            );
+          });
+      }
+    }
   }, [id, cachedResponse]);
   return (
     <>

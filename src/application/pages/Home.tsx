@@ -52,7 +52,6 @@ const HomePage = () => {
     } else {
       cachedResponse && setAllPodcasts(JSON.parse(cachedResponse).response);
     }
- 
   };
 
   useEffect(() => {

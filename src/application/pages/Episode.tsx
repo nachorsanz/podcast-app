@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import PodcastInfo from '../features/podcast-info/podcast-info-component';
 import Header from '../features/header-component/header-component';
 import Card from '../features/card-component/card-component';
+import { sanitizeHtml } from '../../infra/services/utils/utils';
 
 const ContainerStyles = css`
   display: flex;
@@ -84,7 +85,7 @@ const EpisodePage: React.FC = () => {
           </h2>
           <div css={PodcastInfoStyles}>
             <span
-              dangerouslySetInnerHTML={{ __html: podcast?.description }}
+              dangerouslySetInnerHTML={sanitizeHtml(podcast?.description)}
             ></span>
           </div>
           <div>

@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  PodcastType,
-   PodcastDetailType,
-} from '../../../domain/models/podcast';
+import { PodcastType, PodcastDetailType } from '../../../domain/models/podcast';
 import { formatDate, formatTime } from '../../../infra/services/utils/utils';
 import { useNavigate } from 'react-router-dom';
 import { css } from '@emotion/react';
@@ -58,10 +55,10 @@ const ContainerStyles = css`
 `;
 
 const buttonContainer = css`
-width: 100%;
+  width: 100%;
   display: flex;
   align-items: flex-end;
-  `;
+`;
 const buttonStyles = css`
   background-color: #007aff;
   border: 1px solid #007aff;
@@ -82,7 +79,7 @@ const headeContainerStyles = css`
   display: flex;
   justify-content: space-between;
   gap: 20px;
-`
+`;
 
 interface PodcastDetailProps {
   podcast: PodcastDetailType[];
@@ -105,9 +102,7 @@ const PodcastDetail: React.FC<PodcastDetailProps> = ({
       <div>
         <div css={headerContainer}>
           <div css={headerStyles}>Title</div>
-          <div
-            css={headeContainerStyles}
-          >
+          <div css={headeContainerStyles}>
             <div css={headerStyles}>Date</div>
             <div css={headerStyles}>Time</div>
           </div>
@@ -122,9 +117,7 @@ const PodcastDetail: React.FC<PodcastDetailProps> = ({
                 >
                   {podcast.trackName}
                 </div>
-                <div
-                  css={headeContainerStyles}
-                >
+                <div css={headeContainerStyles}>
                   <p>{formatDate(podcast.releaseDate)}</p>
                   <p>{formatTime(podcast.trackTimeMillis)}</p>
                 </div>
@@ -132,9 +125,7 @@ const PodcastDetail: React.FC<PodcastDetailProps> = ({
             ))}
         </ul>
       </div>
-      <div
-        css={buttonContainer}
-      >
+      <div css={buttonContainer}>
         <button css={buttonStyles} onClick={() => navigate('/')}>
           VOLVER AL LISTADO
         </button>
