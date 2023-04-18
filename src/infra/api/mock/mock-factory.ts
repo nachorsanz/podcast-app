@@ -1,4 +1,4 @@
-import { PodcastDetailType, PodcastType } from "../../../domain/podcast";
+import { PodcastDetailType, PodcastType } from "../../../domain/models/podcast";
 
 export const generateMockPodcast = (): PodcastType => {
     const randomString = Math.random().toString(36).substring(7);

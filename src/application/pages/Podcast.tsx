@@ -4,7 +4,7 @@ import PodcastDetail from '../features/podcast-detail/podcast-detail-component';
 import Header from '../features/header-component/header-component';
 import Card from '../features/card-component/card-component';
 import { useParams, useLocation } from 'react-router-dom';
-import {  PodcastDetailType } from '../../domain/podcast';
+import {  PodcastDetailType } from '../../domain/models/podcast';
 import { getPodcastDetail } from '../../infra/api/get-data-from-api/get-data-from-api';
 import PodcastInfo from '../features/podcast-info/podcast-info-component';
 

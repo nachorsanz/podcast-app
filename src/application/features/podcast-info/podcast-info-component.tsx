@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import { PodcastType } from '../../../domain/podcast';
+import { PodcastType } from '../../../domain/models/podcast';
 
 type PodcastInfoProps = {
   podcast: PodcastType;

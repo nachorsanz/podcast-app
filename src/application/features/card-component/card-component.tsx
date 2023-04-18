@@ -9,7 +9,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ width, height, children, imageUrl }) => {
   return (
-    <div css={cardStyle(width, height)}>
+    <div css={cardStyle(width, height)} data-testid='card-component'>
       {imageUrl && <img css={imageStyle} src={imageUrl} alt={imageUrl} />}
       <div css={contentStyle}>{children}</div>
     </div>

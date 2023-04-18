@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { PodcastType } from '../../../domain/podcast';
+import { PodcastType } from '../../../domain/models/podcast';
 
 interface PaginationProps {
   goToPreviousPage: () => void;
