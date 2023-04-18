@@ -5,16 +5,27 @@ import '@testing-library/jest-dom/extend-expect';
 import { render } from '@testing-library/react';
 import Card from './card-component';
 
-describe('WrapperTestingProvider', () => {
-  it('should render children within AppProvider', () => {
+describe('Card component', () => {
+  it('should be render', () => {
     const children = <div>Test Children</div>;
-    const { getByText, getByTestId } = render(
+    const {  getByTestId } = render(
+      <Card width="300px" height="200px">
+        {children}
+      </Card>,
+    );
+
+    
+    expect(getByTestId('card-component')).toBeInTheDocument();
+  });
+  it('should render children with text', () => {
+    const children = <div>Test Children</div>;
+    const { getByText } = render(
       <Card width="300px" height="200px">
         {children}
       </Card>,
     );
 
     expect(getByText('Test Children')).toBeInTheDocument();
-    expect(getByTestId('card-component')).toBeInTheDocument();
+  
   });
 });

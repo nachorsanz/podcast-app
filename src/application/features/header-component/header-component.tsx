@@ -27,7 +27,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ children }) => {
   const navigate = useNavigate();
   return (
-    <header onClick={() => navigate('/')} css={headerStyle}>
+    <header onClick={() => navigate('/')} css={headerStyle} data-testid='header-component'>
       <h1>{children}</h1>
     </header>
   );

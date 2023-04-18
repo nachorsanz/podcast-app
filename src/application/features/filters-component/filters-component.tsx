@@ -9,7 +9,7 @@ interface FiltersProps {
 
 const Filters = ({ total, filter, handleFilter }: FiltersProps) => {
   return (
-    <div css={filtersContainerStyles}>
+    <div css={filtersContainerStyles} data-testid='filters-component'>
       <div css={filtersTopRowStyles}>
         <span
           css={{
@@ -26,7 +26,7 @@ const Filters = ({ total, filter, handleFilter }: FiltersProps) => {
             borderRadius: '5px',
           }}
         >
-          {total}{' '}
+          {total}
         </span>
         <div css={{ display: 'flex', gap: 10 }}>
           <input
