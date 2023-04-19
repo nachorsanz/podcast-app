@@ -78,7 +78,7 @@ const EpisodePage: React.FC = () => {
   const mainPodcast = state?.mainPodcast;
 
   return (
-    <>
+    <div data-testid='episode-page'>
       <Header>PODCAST APP</Header>
 
       <div css={containerStyle}>
@@ -115,7 +115,7 @@ const EpisodePage: React.FC = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
