@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import PodcastInfo from '../features/podcast-info/podcast-info-component';
 import Header from '../features/header-component/header-component';
 import Card from '../features/card-component/card-component';
-import { sanitizeHtml } from '../../infra/services/utils/utils';
+import { sanitizeHtml } from '../../domain/services/utils/utils';
 
 const ContainerStyles = css`
   display: flex;

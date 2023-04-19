@@ -4,7 +4,7 @@ import { getTopPodcasts } from '../../infra/api/get-data-from-api/get-data-from-
 import Header from '../features/header-component/header-component';
 import { useNavigate } from 'react-router-dom';
 import { PodcastType } from '../../domain/models/podcast';
-import { paginateArray } from '../../infra/services/utils/utils';
+import { paginateArray } from '../../domain/services/utils/utils';
 import Pagination from '../features/pagination-component/pagination-component';
 import Filters from '../features/filters-component/filters-component';
 

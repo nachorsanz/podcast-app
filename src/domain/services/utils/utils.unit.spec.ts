@@ -1,4 +1,4 @@
-import { generateMockPodcast } from '../../api/mock/mock-factory';
+import { generateMockPodcast } from '../../../infra/api/mock/mock-factory';
 import { paginateArray, formatTime, formatDate } from './utils';
 
 describe('paginateArray function', () => {

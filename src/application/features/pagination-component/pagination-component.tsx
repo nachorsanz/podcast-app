@@ -15,7 +15,7 @@ const Pagination: React.FC<PaginationProps> = ({
   currentPage,
 }) => {
   return (
-    <div css={paginationContainer}>
+    <div css={paginationContainer} data-testid='pagination-component'>
       <button
         css={paginationButton}
         onClick={goToPreviousPage}

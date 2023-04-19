@@ -1,4 +1,4 @@
-import { PodcastType } from '../../../domain/models/podcast';
+import { PodcastType } from '../../models/podcast';
 import DOMPurify from 'dompurify';
 
 export const paginateArray = (podcasts: PodcastType[], pageSize: number) => {

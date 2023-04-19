@@ -1,6 +1,6 @@
 import React from 'react';
 import { PodcastType, PodcastDetailType } from '../../../domain/models/podcast';
-import { formatDate, formatTime } from '../../../infra/services/utils/utils';
+import { formatDate, formatTime } from '../../../domain/services/utils/utils';
 import { useNavigate } from 'react-router-dom';
 import { css } from '@emotion/react';
 
