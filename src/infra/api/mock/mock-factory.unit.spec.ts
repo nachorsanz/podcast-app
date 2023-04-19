@@ -46,27 +46,48 @@ describe('generateMockPodcast', () => {
 });
 
 describe('getMockPodcastDetail', () => {
-    test('returns a mock podcast detail object', () => {
-      const result = getMockPodcastDetail();
-  
-      expect(result).toHaveProperty('country', 'United States');
-      expect(result).toHaveProperty('artworkUrl60', 'https://example.com/podcastartwork60.png');
-      expect(result).toHaveProperty('closedCaptioning', 'false');
-      expect(result).toHaveProperty('collectionId', 123456789);
-      expect(result).toHaveProperty('collectionName', 'Example Podcast');
-      expect(result).toHaveProperty('contentAdvisoryRating', 'Explicit');
-      expect(result).toHaveProperty('trackViewUrl', 'https://example.com/podcast');
-      expect(result).toHaveProperty('description', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod neque nec libero maximus scelerisque. Vestibulum semper nibh vitae ante accumsan commodo. Suspendisse eu odio eros. Sed malesuada odio ac velit tristique, sed blandit quam auctor. Fusce sed ultrices arcu. Fusce id felis in urna facilisis mollis.');
-      expect(result).toHaveProperty('artistIds', []);
-      expect(result).toHaveProperty('shortDescription', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
-      expect(result).toHaveProperty('episodeUrl', 'https://example.com/episode1');
-      expect(result).toHaveProperty('releaseDate', '2022-04-01T12:34:56Z');
-      expect(result).toHaveProperty('collectionViewUrl', 'https://example.com/podcast');
-      expect(result).toHaveProperty('trackTimeMillis', 3600000);
-      expect(result).toHaveProperty('trackId', 987654321);
-      expect(result).toHaveProperty('trackName', 'Example Episode');
-      expect(result).toHaveProperty('feedUrl', 'https://example.com/feed.xml');
-      expect(result).toHaveProperty('artworkUrl160', 'https://example.com/podcastartwork160.png');
-      expect(result).toHaveProperty('artworkUrl600', 'https://example.com/podcastartwork600.png');
-    });
+  test('returns a mock podcast detail object', () => {
+    const result = getMockPodcastDetail();
+
+    expect(result).toHaveProperty('country', 'United States');
+    expect(result).toHaveProperty(
+      'artworkUrl60',
+      'https://example.com/podcastartwork60.png',
+    );
+    expect(result).toHaveProperty('closedCaptioning', 'false');
+    expect(result).toHaveProperty('collectionId', 123456789);
+    expect(result).toHaveProperty('collectionName', 'Example Podcast');
+    expect(result).toHaveProperty('contentAdvisoryRating', 'Explicit');
+    expect(result).toHaveProperty(
+      'trackViewUrl',
+      'https://example.com/podcast',
+    );
+    expect(result).toHaveProperty(
+      'description',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod neque nec libero maximus scelerisque. Vestibulum semper nibh vitae ante accumsan commodo. Suspendisse eu odio eros. Sed malesuada odio ac velit tristique, sed blandit quam auctor. Fusce sed ultrices arcu. Fusce id felis in urna facilisis mollis.',
+    );
+    expect(result).toHaveProperty('artistIds', []);
+    expect(result).toHaveProperty(
+      'shortDescription',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    );
+    expect(result).toHaveProperty('episodeUrl', 'https://example.com/episode1');
+    expect(result).toHaveProperty('releaseDate', '2022-04-01T12:34:56Z');
+    expect(result).toHaveProperty(
+      'collectionViewUrl',
+      'https://example.com/podcast',
+    );
+    expect(result).toHaveProperty('trackTimeMillis', 3600000);
+    expect(result).toHaveProperty('trackId', 987654321);
+    expect(result).toHaveProperty('trackName', 'Example Episode');
+    expect(result).toHaveProperty('feedUrl', 'https://example.com/feed.xml');
+    expect(result).toHaveProperty(
+      'artworkUrl160',
+      'https://example.com/podcastartwork160.png',
+    );
+    expect(result).toHaveProperty(
+      'artworkUrl600',
+      'https://example.com/podcastartwork600.png',
+    );
   });
+});

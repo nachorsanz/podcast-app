@@ -7,6 +7,55 @@ import { PodcastType } from '../../domain/models/podcast';
 import { paginateArray } from '../../domain/services/utils/utils';
 import Pagination from '../features/pagination-component/pagination-component';
 import Filters from '../features/filters-component/filters-component';
+import { css } from '@emotion/react';
+
+const filtersContainerStyle = css`
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  margin-top: 90px;
+`;
+
+const mainContainerStyle = css`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  margin-top: 90px;
+`;
+
+const podcastFlexContainerStyle = css`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+`;
+
+const podcastListContainerStyle = css`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+`;
+
+const podcastListItemStyle = css`
+  width: 280px;
+  height: 240px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const podcastTitleStyle = css`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 240px;
+  text-align: center;
+`;
 
 const HomePage = () => {
   const pageSize = 24;
@@ -84,62 +133,22 @@ const HomePage = () => {
   return (
     <>
       <Header>PODCAST APP</Header>
-      <div
-        style={{
-          width: '100%',
-          display: 'flex',
-          alignItems: 'flex-end',
-          marginTop: '90px',
-        }}
-      >
+      <div css={filtersContainerStyle}>
         <Filters
           handleFilter={handleFilter}
           filter={filter}
           total={filteredPodcasts.length}
         />
       </div>
-      <div
-        className="App"
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: '100%',
-
-          height: '100vh',
-          marginTop: '90px',
-        }}
-      >
-        <div
-          style={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-          }}
-        >
-          <div
-            style={{
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              flexWrap: 'wrap',
-              gap: '20px',
-            }}
-          >
+      <div css={mainContainerStyle}>
+        <div css={podcastFlexContainerStyle}>
+          <div css={podcastListContainerStyle}>
             {filteredPodcasts.length ? (
               paginatedProducts[currentPage - 1]?.map((podcast: any) => {
                 return (
                   <div
                     key={podcast['im:name'].label}
-                    style={{
-                      width: '280px',
-                      height: '240px',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
+                    css={podcastListItemStyle}
                     onClick={() =>
                       handleNavigate(podcast.id.attributes['im:id'], podcast)
                     }
@@ -150,18 +159,12 @@ const HomePage = () => {
                       imageUrl={podcast['im:image'][2].label}
                       key={podcast['im:name'].label}
                     >
-                      <h3
-                        style={{
-                          whiteSpace: 'nowrap',
-                          overflow: 'hidden',
-                          textOverflow: 'ellipsis',
-                          width: '240px',
-                          textAlign: 'center',
-                        }}
-                      >
+                      <h3 css={podcastTitleStyle}>
                         {podcast['im:name'].label.toUpperCase()}
                       </h3>
-                      <p>Author: {podcast['im:artist'].label}</p>
+                      <p css={podcastTitleStyle}>
+                        Author: {podcast['im:artist'].label}
+                      </p>
                     </Card>
                   </div>
                 );

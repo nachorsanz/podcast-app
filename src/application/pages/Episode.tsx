@@ -6,12 +6,12 @@ import Header from '../features/header-component/header-component';
 import Card from '../features/card-component/card-component';
 import { sanitizeHtml } from '../../domain/services/utils/utils';
 
-const ContainerStyles = css`
+const containerStyle = css`
   display: flex;
   justify-content: space-around;
   margin-top: 180px;
 `;
-const cardStyles = css`
+const cardStyle = css`
   background-color: white;
   padding: 20px;
   border-radius: 5px;
@@ -34,7 +34,7 @@ const cardStyles = css`
   }
 `;
 
-const PodcastInfoStyles = css`
+const podcastInfoStyle = css`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -49,7 +49,13 @@ const PodcastInfoStyles = css`
   }
 `;
 
-const buttonStyles = css`
+const buttonContainerStyle = css`
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+`;
+
+const buttonStyle = css`
   background-color: #007aff;
   border: 1px solid #007aff;
   color: #fff;
@@ -75,15 +81,15 @@ const EpisodePage: React.FC = () => {
     <>
       <Header>PODCAST APP</Header>
 
-      <div css={ContainerStyles}>
+      <div css={containerStyle}>
         <Card width="300px" height="min-content">
           <PodcastInfo podcast={mainPodcast} />
         </Card>
-        <div css={cardStyles}>
+        <div css={cardStyle}>
           <h2>
             {podcast?.collectionName} - {podcast?.trackName}
           </h2>
-          <div css={PodcastInfoStyles}>
+          <div css={podcastInfoStyle}>
             <span
               dangerouslySetInnerHTML={sanitizeHtml(podcast?.description)}
             ></span>
@@ -93,15 +99,9 @@ const EpisodePage: React.FC = () => {
               <source src={podcast?.episodeUrl} type="audio/mp3" />
             </audio>
           </div>
-          <div
-            style={{
-              width: '100%',
-              display: 'flex',
-              alignItems: 'flex-end',
-            }}
-          >
+          <div css={buttonContainerStyle}>
             <button
-              css={buttonStyles}
+              css={buttonStyle}
               onClick={() =>
                 navigate(`/podcast/${mainPodcast.id.attributes['im:id']}`, {
                   state: {

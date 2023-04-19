@@ -1,21 +1,4 @@
 import { css } from '@emotion/react';
-
-interface CardProps {
-  width: string;
-  height: string;
-  children: React.ReactNode;
-  imageUrl?: string;
-}
-
-const Card: React.FC<CardProps> = ({ width, height, children, imageUrl }) => {
-  return (
-    <div css={cardStyle(width, height)} data-testid="card-component">
-      {imageUrl && <img css={imageStyle} src={imageUrl} alt={imageUrl} />}
-      <div css={contentStyle}>{children}</div>
-    </div>
-  );
-};
-
 const cardStyle = (width: string, height: string) => css`
   width: ${width};
   height: ${height};
@@ -48,5 +31,20 @@ const imageStyle = css`
   border-radius: 50%;
   border: 2px solid #fff;
 `;
+interface CardProps {
+  width: string;
+  height: string;
+  children: React.ReactNode;
+  imageUrl?: string;
+}
+
+const Card: React.FC<CardProps> = ({ width, height, children, imageUrl }) => {
+  return (
+    <div css={cardStyle(width, height)} data-testid="card-component">
+      {imageUrl && <img css={imageStyle} src={imageUrl} alt={imageUrl} />}
+      <div css={contentStyle}>{children}</div>
+    </div>
+  );
+};
 
 export default Card;

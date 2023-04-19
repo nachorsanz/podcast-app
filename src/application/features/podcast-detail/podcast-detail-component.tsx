@@ -4,12 +4,12 @@ import { formatDate, formatTime } from '../../../domain/services/utils/utils';
 import { useNavigate } from 'react-router-dom';
 import { css } from '@emotion/react';
 
-const headerStyles = css`
+const headerStyle = css`
   color: #333;
   padding: 10px;
   font-size: 20px;
 `;
-const headerContainer = css`
+const headerContainerStyle = css`
   display: flex;
   width: 98%;
   justify-content: space-between;
@@ -19,12 +19,12 @@ const headerContainer = css`
   background-color: #f5f5f5;
 `;
 
-const listStyles = css`
+const listStyle = css`
   list-style: none;
   width: 800px;
 `;
 
-const listItemStyles = css`
+const listItemStyle = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -32,12 +32,12 @@ const listItemStyles = css`
   padding: 10px;
 `;
 
-const nameStyles = css`
+const nameStyle = css`
   color: blue;
   cursor: pointer;
 `;
 
-const ContainerStyles = css`
+const containerStyle = css`
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -54,12 +54,12 @@ const ContainerStyles = css`
   background-color: #fff;
 `;
 
-const buttonContainer = css`
+const buttonContainerStyle = css`
   width: 100%;
   display: flex;
   align-items: flex-end;
 `;
-const buttonStyles = css`
+const buttonStyle = css`
   background-color: #007aff;
   border: 1px solid #007aff;
   color: #fff;
@@ -75,7 +75,7 @@ const buttonStyles = css`
   }
 `;
 
-const headeContainerStyles = css`
+const headeContainerStyle = css`
   display: flex;
   justify-content: space-between;
   gap: 20px;
@@ -98,26 +98,26 @@ const PodcastDetail: React.FC<PodcastDetailProps> = ({
     });
   };
   return (
-    <div css={ContainerStyles}>
+    <div css={containerStyle}>
       <div>
-        <div css={headerContainer}>
-          <div css={headerStyles}>Title</div>
-          <div css={headeContainerStyles}>
-            <div css={headerStyles}>Date</div>
-            <div css={headerStyles}>Time</div>
+        <div css={headerContainerStyle}>
+          <div css={headerStyle}>Title</div>
+          <div css={headeContainerStyle}>
+            <div css={headerStyle}>Date</div>
+            <div css={headerStyle}>Time</div>
           </div>
         </div>
-        <ul css={listStyles}>
+        <ul css={listStyle}>
           {podcast &&
             podcast.map((podcast) => (
-              <li key={podcast.trackViewUrl} css={listItemStyles}>
+              <li key={podcast.trackViewUrl} css={listItemStyle}>
                 <div
-                  css={nameStyles}
+                  css={nameStyle}
                   onClick={() => handleRedirectToEpisodeDetail(podcast)}
                 >
                   {podcast.trackName}
                 </div>
-                <div css={headeContainerStyles}>
+                <div css={headeContainerStyle}>
                   <p>{formatDate(podcast.releaseDate)}</p>
                   <p>{formatTime(podcast.trackTimeMillis)}</p>
                 </div>
@@ -125,8 +125,8 @@ const PodcastDetail: React.FC<PodcastDetailProps> = ({
             ))}
         </ul>
       </div>
-      <div css={buttonContainer}>
-        <button css={buttonStyles} onClick={() => navigate('/')}>
+      <div css={buttonContainerStyle}>
+        <button css={buttonStyle} onClick={() => navigate('/')}>
           VOLVER AL LISTADO
         </button>
       </div>

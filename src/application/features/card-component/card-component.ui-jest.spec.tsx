@@ -8,13 +8,12 @@ import Card from './card-component';
 describe('Card component', () => {
   it('should be render', () => {
     const children = <div>Test Children</div>;
-    const {  getByTestId } = render(
+    const { getByTestId } = render(
       <Card width="300px" height="200px">
         {children}
       </Card>,
     );
 
-    
     expect(getByTestId('card-component')).toBeInTheDocument();
   });
   it('should render children with text', () => {
@@ -26,6 +25,5 @@ describe('Card component', () => {
     );
 
     expect(getByText('Test Children')).toBeInTheDocument();
-  
   });
 });

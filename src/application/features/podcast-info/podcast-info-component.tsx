@@ -2,11 +2,11 @@ import React from 'react';
 import { css } from '@emotion/react';
 import { PodcastType } from '../../../domain/models/podcast';
 
-type PodcastInfoProps = {
+interface PodcastInfoProps {
   podcast: PodcastType;
-};
+}
 
-const PodcastInfoStyles = css`
+const podcastInfoStyle = css`
   width: 280px;
   height: auto;
   padding: 20px;
@@ -55,7 +55,7 @@ const PodcastInfo: React.FC<PodcastInfoProps> = ({ podcast }) => {
   const imageSrc = images[2]?.label || '';
 
   return (
-    <div css={PodcastInfoStyles}>
+    <div css={podcastInfoStyle}>
       <img src={imageSrc} alt={name} />
       <h2>{name}</h2>
       <h3>{artist}</h3>

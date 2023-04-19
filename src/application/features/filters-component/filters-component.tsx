@@ -1,6 +1,36 @@
 import { ChangeEvent } from 'react';
 import { css } from '@emotion/react';
+const filtersContainerStyle = css`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 5px;
+  padding: 30px;
+`;
 
+const filtersTopRowStyle = css`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 10px;
+  margin-right: 90px;
+`;
+
+const filterInputStyle = css`
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+  padding: 5px 10px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+  font-size: 16px;
+  flex: 1;
+
+  &:focus {
+    outline: none;
+    border: 1px solid #007aff;
+  }
+`;
 interface FiltersProps {
   total: number;
   filter: string;
@@ -9,8 +39,8 @@ interface FiltersProps {
 
 const Filters = ({ total, filter, handleFilter }: FiltersProps) => {
   return (
-    <div css={filtersContainerStyles} data-testid='filters-component'>
-      <div css={filtersTopRowStyles}>
+    <div css={filtersContainerStyle} data-testid="filters-component">
+      <div css={filtersTopRowStyle}>
         <span
           css={{
             fontSize: 16,
@@ -35,7 +65,7 @@ const Filters = ({ total, filter, handleFilter }: FiltersProps) => {
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               handleFilter(e.target.value)
             }
-            css={filterInputStyles}
+            css={filterInputStyle}
             placeholder="Filtrar podcasts..."
           />
         </div>
@@ -43,35 +73,5 @@ const Filters = ({ total, filter, handleFilter }: FiltersProps) => {
     </div>
   );
 };
-const filtersContainerStyles = css`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  padding: 20px;
-  border-radius: 5px;
-  padding: 30px;
-`;
 
-const filtersTopRowStyles = css`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 10px;
-  margin-right: 90px;
-`;
-
-const filterInputStyles = css`
-  border: 1px solid #cccccc;
-  border-radius: 3px;
-  padding: 5px 10px;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
-  font-size: 16px;
-  flex: 1;
-
-  &:focus {
-    outline: none;
-    border: 1px solid #007aff;
-  }
-`;
 export default Filters;

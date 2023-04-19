@@ -8,10 +8,24 @@ import { PodcastDetailType } from '../../domain/models/podcast';
 import { getPodcastDetail } from '../../infra/api/get-data-from-api/get-data-from-api';
 import PodcastInfo from '../features/podcast-info/podcast-info-component';
 
-const containerStyles = css`
+const containerStyle = css`
   display: flex;
   justify-content: space-around;
   margin-top: 180px;
+`;
+
+const listContainerStyle = css`
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  height: auto;
+  padding: 20px;
+  margin-top: 20px;
+`;
+
+const listItemStyle = css`
+  font-size: 24px;
+  font-weight: bold;
 `;
 
 const PodcastPage: React.FC = () => {
@@ -64,28 +78,12 @@ const PodcastPage: React.FC = () => {
     <>
       <Header>PODCAST APP</Header>
 
-      <div css={containerStyles}>
+      <div css={containerStyle}>
         <Card width="300px" height="min-content">
           <PodcastInfo podcast={state?.podcast} />
         </Card>
-        <div
-          css={css`
-            display: flex;
-            flex-direction: column;
-            width: 800px;
-            height: auto;
-            padding: 20px;
-            margin-top: 20px;
-          `}
-        >
-          <div
-            css={css`
-              font-size: 24px;
-              font-weight: bold;
-            `}
-          >
-            Episodes: {podcast?.length}
-          </div>
+        <div css={listContainerStyle}>
+          <div css={listItemStyle}>Episodes: {podcast?.length}</div>
           <PodcastDetail podcast={podcast ?? []} mainPodcast={state.podcast} />
         </div>
       </div>

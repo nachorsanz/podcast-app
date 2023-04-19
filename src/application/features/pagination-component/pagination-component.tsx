@@ -1,40 +1,7 @@
 import { css } from '@emotion/react';
 import { PodcastType } from '../../../domain/models/podcast';
 
-interface PaginationProps {
-  goToPreviousPage: () => void;
-  goToNextPage: () => void;
-  paginatedProducts: PodcastType[][];
-  currentPage: number;
-}
-
-const Pagination: React.FC<PaginationProps> = ({
-  goToPreviousPage,
-  goToNextPage,
-  paginatedProducts,
-  currentPage,
-}) => {
-  return (
-    <div css={paginationContainer} data-testid='pagination-component'>
-      <button
-        css={paginationButton}
-        onClick={goToPreviousPage}
-        disabled={currentPage === 1}
-      >
-        Anterior
-      </button>
-      <button
-        css={paginationButton}
-        onClick={goToNextPage}
-        disabled={currentPage === paginatedProducts.length}
-      >
-        Siguiente
-      </button>
-    </div>
-  );
-};
-
-const paginationContainer = css`
+const paginationContainerStyle = css`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,7 +9,7 @@ const paginationContainer = css`
   margin-bottom: 30px;
 `;
 
-const paginationButton = css`
+const paginationButtonStyle = css`
   background-color: #007aff;
   color: #fff;
   font-size: 16px;
@@ -65,5 +32,37 @@ const paginationButton = css`
     transform: translateY(1px);
   }
 `;
+interface PaginationProps {
+  goToPreviousPage: () => void;
+  goToNextPage: () => void;
+  paginatedProducts: PodcastType[][];
+  currentPage: number;
+}
+
+const Pagination: React.FC<PaginationProps> = ({
+  goToPreviousPage,
+  goToNextPage,
+  paginatedProducts,
+  currentPage,
+}) => {
+  return (
+    <div css={paginationContainerStyle} data-testid="pagination-component">
+      <button
+        css={paginationButtonStyle}
+        onClick={goToPreviousPage}
+        disabled={currentPage === 1}
+      >
+        Anterior
+      </button>
+      <button
+        css={paginationButtonStyle}
+        onClick={goToNextPage}
+        disabled={currentPage === paginatedProducts.length}
+      >
+        Siguiente
+      </button>
+    </div>
+  );
+};
 
 export default Pagination;
