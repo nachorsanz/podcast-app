@@ -13,10 +13,9 @@ const goToPreviousPage = jest.fn()
 const paginatedProducts = paginateArray([generateMockPodcast(),generateMockPodcast() ], pageSize)
 const currentPage = 1
 
-describe('Header component', () => {
+describe('Pagination component', () => {
   
   it('should be render', () => {
-    const children = <h1>HEADER</h1>
     const {  getByTestId } = render(
       <Pagination
         goToPreviousPage={goToPreviousPage}
