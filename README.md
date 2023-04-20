@@ -21,3 +21,19 @@ Este proyecto viene con varios scripts predefinidos en el archivo package.json. 
 - prettier: formatea automáticamente el código fuente utilizando Prettier.
 - typecheck: verifica los tipos de TypeScript en el código fuente.
 - precommit: ejecuta automáticamente las pruebas de interfaz de usuario y el formateo de código antes de confirmar los cambios en el repositorio.
+
+# Proxy-server
+
+Para solucionar el problema de cors he montado un proxy con nodeJS
+
+# Iniciar el Proyecto
+
+Para iniciar el proyecto primero debemos levantar el proxy-server.
+
+Para ello iremos a la ruta src/infra/proxy-server y ejecutaremos el comando "npm i" o bien "yarn" para instalar las dependencias necesarias.
+
+Luego ejecutaremos "npm run start" o "yarn start" para levantar nuestro server en el puerto 3001
+
+Una vez levantado el proxy-server, iremos a la ruta principal del proyecto y ejecutaremos el comando "npm i" o bien "yarn" para instalar las dependencias necesarias.
+
+Y usaremos el script necesario para levantar la aplicación. "npm run start:dev" o "yarn start:dev"

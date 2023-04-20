@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/"
+    },
+    {
+      "src": "/get-top-podcast/(.*)",
+      "dest": "/get-top-podcast"
+    },
+    {
+      "src": "/get-podcast/(.*)",
+      "dest": "/get-podcast"
+    }
+  ]
+}

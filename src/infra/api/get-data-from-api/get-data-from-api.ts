@@ -1,8 +1,11 @@
+
+const topPodcastsUrl = process.env.VITE_APP_PODCAST_MAIN_URL as string
+const detailPodcastUrl = process.env.VITE_APP_PODCAST_DETAIL_URL as string
+
 export const getTopPodcasts = async () => {
   const response = await fetch(
-    'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json',
+    topPodcastsUrl,
   );
-  if (!response.ok) return;
 
   const data = await response?.json();
   return data;
@@ -10,9 +13,10 @@ export const getTopPodcasts = async () => {
 
 export const getPodcastDetail = async (podcastId: string) => {
   const response = await fetch(
-    `https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=20`,
+    `${detailPodcastUrl}${podcastId}`,
   );
-  if (!response.ok) return;
-  const data = await response?.json();
-  return data;
+  
+const data = await response?.json();
+return data;
+ 
 };
