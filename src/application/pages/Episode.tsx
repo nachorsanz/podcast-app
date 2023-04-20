@@ -84,7 +84,7 @@ const EpisodePage: React.FC = () => {
 
   return (
     <div data-testid="episode-page">
-      <Header isLoading={!podcast.length}>PODCAST APP</Header>
+      <Header isLoading={!podcast}>PODCAST APP</Header>
 
       <div css={containerStyle}>
         <Card width="300px" height="min-content">
