@@ -78,12 +78,12 @@ const HomePage = () => {
 
   const fetchTopPodcasts = () => {
     getTopPodcasts().then((response) => {
-      response?.feed && setAllPodcasts(response.feed.entry);
+      response && response?.feed && setAllPodcasts(response.feed.entry);
       localStorage.setItem(
         'cachedResponse',
         JSON.stringify({
           date: new Date().toISOString(),
-          response: response.feed.entry,
+          response: response?.feed.entry,
         }),
       );
     });

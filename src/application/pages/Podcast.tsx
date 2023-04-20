@@ -29,51 +29,61 @@ const listItemStyle = css`
 `;
 
 const PodcastPage: React.FC = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const { state } = useLocation();
-  const [cachedResponse, setCachedResponse] = useState<string | null>(
-    localStorage.getItem('cachedResponse'),
-  );
-  const [podcast, setPodcast] = useState<PodcastDetailType[]>();
+  const [cachedResponses, setCachedResponses] = useState<
+    { id: string; data: PodcastDetailType[]; date: string }[]
+  >(() => {
+    const cachedResponsesString = localStorage.getItem('cachedResponses');
+    if (cachedResponsesString) {
+      return JSON.parse(cachedResponsesString);
+    }
+    return [];
+  });
+
+  const updateCachedResponses = (
+    id: string,
+    data: PodcastDetailType[],
+    date: string,
+  ) => {
+    const cachedResponse = cachedResponses.find((r) => r.id === id);
+    const newCachedResponses = cachedResponse
+      ? cachedResponses.filter((r) => r.id !== id)
+      : cachedResponses;
+    newCachedResponses.push({ id, data, date });
+    localStorage.setItem('cachedResponses', JSON.stringify(newCachedResponses));
+    setCachedResponses(newCachedResponses);
+  };
 
   useEffect(() => {
+    const cachedResponse = cachedResponses.find((r) => r.id === id);
     if (cachedResponse) {
-      const cachedDate = JSON.parse(cachedResponse).date;
+      const cachedDate = cachedResponse.date;
       const now = new Date().toISOString();
-      const difference =
-        new Date(now).getTime() - new Date(cachedDate).getTime();
+      const difference = new Date(now).getTime() - new Date(cachedDate).getTime();
       const differenceInHours = Math.floor(difference / 1000 / 60 / 60);
-      if (differenceInHours >= 24) {
-        localStorage.removeItem('cachedResponse');
-        setCachedResponse(null);
-        id &&
-          getPodcastDetail(id).then((data) => {
-            const result = data.results.slice(1);
-            setPodcast(result);
-            localStorage.setItem(
-              'cacheDetail',
-              JSON.stringify({
-                date: new Date().toISOString(),
-                response: result,
-              }),
-            );
-          });
+      if (differenceInHours >= 24 || !cachedResponse.data) {
+        const newCachedResponses = cachedResponses.filter((r) => r.id !== id);
+        localStorage.setItem('cachedResponses', JSON.stringify(newCachedResponses));
+        setCachedResponses(newCachedResponses);
+       id && getPodcastDetail(id).then((data) => {
+          const result = data.results.slice(1);
+          updateCachedResponses(id, result, new Date().toISOString());
+        });
       } else {
-        id &&
-          getPodcastDetail(id).then((data) => {
-            const result = data.results.slice(1);
-            setPodcast(result);
-            localStorage.setItem(
-              'cacheDetail',
-              JSON.stringify({
-                date: new Date().toISOString(),
-                response: result,
-              }),
-            );
-          });
+        setPodcast(cachedResponse.data);
       }
+    } else {
+     id && getPodcastDetail(id).then((data) => {
+        const result = data?.results.slice(1);
+        setPodcast(result);
+        updateCachedResponses(id, result, new Date().toISOString());
+      });
     }
-  }, [id, cachedResponse]);
+  }, [id, cachedResponses]);
+
+  const [podcast, setPodcast] = useState<PodcastDetailType[]>([]);
+
   return (
     <>
       <Header>PODCAST APP</Header>
