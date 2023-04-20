@@ -3,7 +3,11 @@ import { PodcastType, PodcastDetailType } from '../../../domain/models/podcast';
 import { formatDate, formatTime } from '../../../domain/services/utils/utils';
 import { useNavigate } from 'react-router-dom';
 import { css } from '@emotion/react';
-import { MAIN_BLUE, MAIN_WHITE, SECONDARY_BLUE } from '../../../domain/services/constants/constants';
+import {
+  MAIN_BLUE,
+  MAIN_WHITE,
+  SECONDARY_BLUE,
+} from '../../../domain/services/constants/constants';
 
 const headerStyle = css`
   color: #333;

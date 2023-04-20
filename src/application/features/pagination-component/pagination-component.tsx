@@ -1,6 +1,10 @@
 import { css } from '@emotion/react';
 import { PodcastType } from '../../../domain/models/podcast';
-import { MAIN_BLUE, MAIN_WHITE, SECONDARY_BLUE } from '../../../domain/services/constants/constants';
+import {
+  MAIN_BLUE,
+  MAIN_WHITE,
+  SECONDARY_BLUE,
+} from '../../../domain/services/constants/constants';
 
 const paginationContainerStyle = css`
   display: flex;

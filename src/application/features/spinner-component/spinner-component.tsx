@@ -13,16 +13,16 @@ const spin = keyframes`
 `;
 
 const Spinner = ({ visible }: SpinnerProps) => {
-    const spinnerStyle = css`
-      display: ${visible ? 'block' : 'none'};
-      border: 4px solid rgba(0, 0, 0, 0.1);
-      border-left-color: ${MAIN_BLUE};
-      border-radius: 50%;
-      width: 24px;
-      height: 24px;
-      animation: ${spin} 1s linear infinite;
-      margin-right: 20px;
-    `;
+  const spinnerStyle = css`
+    display: ${visible ? 'block' : 'none'};
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: ${MAIN_BLUE};
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: ${spin} 1s linear infinite;
+    margin-right: 20px;
+  `;
 
   return <div css={spinnerStyle} />;
 };

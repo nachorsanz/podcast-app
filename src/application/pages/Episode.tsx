@@ -5,7 +5,11 @@ import PodcastInfo from '../features/podcast-info/podcast-info-component';
 import Header from '../features/header-component/header-component';
 import Card from '../features/card-component/card-component';
 import { sanitizeHtml } from '../../domain/services/utils/utils';
-import { MAIN_BLUE, MAIN_WHITE, SECONDARY_BLUE } from '../../domain/services/constants/constants';
+import {
+  MAIN_BLUE,
+  MAIN_WHITE,
+  SECONDARY_BLUE,
+} from '../../domain/services/constants/constants';
 
 const containerStyle = css`
   display: flex;
@@ -79,7 +83,7 @@ const EpisodePage: React.FC = () => {
   const mainPodcast = state?.mainPodcast;
 
   return (
-    <div data-testid='episode-page'>
+    <div data-testid="episode-page">
       <Header isLoading={!podcast.length}>PODCAST APP</Header>
 
       <div css={containerStyle}>

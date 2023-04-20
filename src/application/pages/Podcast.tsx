@@ -61,33 +61,37 @@ const PodcastPage: React.FC = () => {
     if (cachedResponse) {
       const cachedDate = cachedResponse.date;
       const now = new Date().toISOString();
-      const difference = new Date(now).getTime() - new Date(cachedDate).getTime();
+      const difference =
+        new Date(now).getTime() - new Date(cachedDate).getTime();
       const differenceInHours = Math.floor(difference / 1000 / 60 / 60);
       if (differenceInHours >= 24 || !cachedResponse.data) {
         const newCachedResponses = cachedResponses.filter((r) => r.id !== id);
-        localStorage.setItem('cachedResponses', JSON.stringify(newCachedResponses));
+        localStorage.setItem(
+          'cachedResponses',
+          JSON.stringify(newCachedResponses),
+        );
         setCachedResponses(newCachedResponses);
-       id && getPodcastDetail(id).then((data) => {
-          const result = data.results.slice(1);
-          updateCachedResponses(id, result, new Date().toISOString());
-        });
+        id &&
+          getPodcastDetail(id).then((data) => {
+            const result = data.results.slice(1);
+            updateCachedResponses(id, result, new Date().toISOString());
+          });
       } else {
         setPodcast(cachedResponse.data);
       }
     } else {
-     id && getPodcastDetail(id).then((data) => {
-        const result = data?.results.slice(1);
-        setPodcast(result);
-        updateCachedResponses(id, result, new Date().toISOString());
-      });
+      id &&
+        getPodcastDetail(id).then((data) => {
+          const result = data?.results.slice(1);
+          setPodcast(result);
+          updateCachedResponses(id, result, new Date().toISOString());
+        });
     }
   }, [id, cachedResponses]);
 
-
-
   return (
     <>
-      <Header  isLoading={!podcast.length}>PODCAST APP</Header>
+      <Header isLoading={!podcast.length}>PODCAST APP</Header>
 
       <div css={containerStyle}>
         <Card width="300px" height="min-content">

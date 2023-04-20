@@ -1,6 +1,9 @@
 import { ChangeEvent } from 'react';
 import { css } from '@emotion/react';
-import { MAIN_BLUE, MAIN_WHITE } from '../../../domain/services/constants/constants';
+import {
+  MAIN_BLUE,
+  MAIN_WHITE,
+} from '../../../domain/services/constants/constants';
 const filtersContainerStyle = css`
   display: flex;
   width: 100%;
@@ -45,7 +48,7 @@ const totalTitleStyle = css`
   align-items: center;
   background-color: ${MAIN_BLUE};
   border-radius: 5px;
-`
+`;
 interface FiltersProps {
   total: number;
   filter: string;
@@ -56,11 +59,7 @@ const Filters = ({ total, filter, handleFilter }: FiltersProps) => {
   return (
     <div css={filtersContainerStyle} data-testid="filters-component">
       <div css={filtersTopRowStyle}>
-        <span
-          css={totalTitleStyle}
-        >
-          {total}
-        </span>
+        <span css={totalTitleStyle}>{total}</span>
         <div css={{ display: 'flex', gap: 10 }}>
           <input
             type="text"
