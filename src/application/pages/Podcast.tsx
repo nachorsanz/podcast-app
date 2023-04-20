@@ -31,6 +31,7 @@ const listItemStyle = css`
 const PodcastPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { state } = useLocation();
+  const [podcast, setPodcast] = useState<PodcastDetailType[]>([]);
   const [cachedResponses, setCachedResponses] = useState<
     { id: string; data: PodcastDetailType[]; date: string }[]
   >(() => {
@@ -82,11 +83,11 @@ const PodcastPage: React.FC = () => {
     }
   }, [id, cachedResponses]);
 
-  const [podcast, setPodcast] = useState<PodcastDetailType[]>([]);
+
 
   return (
     <>
-      <Header>PODCAST APP</Header>
+      <Header  isLoading={!podcast.length}>PODCAST APP</Header>
 
       <div css={containerStyle}>
         <Card width="300px" height="min-content">

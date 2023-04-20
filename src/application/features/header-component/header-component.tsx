@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import { useNavigate } from 'react-router-dom';
+import Spinner from '../spinner-component/spinner-component';
 
 const headerStyle = css`
   display: flex;
@@ -22,9 +23,10 @@ const headerStyle = css`
 
 interface HeaderProps {
   children: React.ReactNode;
+  isLoading: boolean
 }
 
-const Header: React.FC<HeaderProps> = ({ children }) => {
+const Header: React.FC<HeaderProps> = ({ children, isLoading = false}) => {
   const navigate = useNavigate();
   return (
     <header
@@ -33,6 +35,7 @@ const Header: React.FC<HeaderProps> = ({ children }) => {
       data-testid="header-component"
     >
       <h1>{children}</h1>
+      <Spinner visible={isLoading} />
     </header>
   );
 };

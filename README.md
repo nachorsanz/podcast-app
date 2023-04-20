@@ -5,11 +5,11 @@ Este es un proyecto llamado "Podcast App" que utiliza las siguientes tecnología
 - React
 - Vite
 - TypeScript
-  · Este proyecto también incluye pruebas unitarias y de interfaz de usuario utilizando Jest y React Testing Library.
+  Este proyecto también incluye pruebas unitarias y de interfaz de usuario utilizando Jest y React Testing Library.
 
 # Scripts
 
-· Este proyecto viene con varios scripts predefinidos en el archivo package.json. Aquí hay una descripción rápida de cada uno:
+Este proyecto viene con varios scripts predefinidos en el archivo package.json. Aquí hay una descripción rápida de cada uno:
 
 - dev: ejecuta la aplicación en modo de desarrollo usando Vite.
 - build: compila la aplicación en una carpeta de distribución para su implementación en producción.

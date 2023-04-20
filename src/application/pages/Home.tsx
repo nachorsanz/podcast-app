@@ -132,7 +132,7 @@ const HomePage = () => {
 
   return (
     <>
-      <Header>PODCAST APP</Header>
+      <Header isLoading={!paginatedProducts.length}>PODCAST APP</Header>
       <div css={filtersContainerStyle}>
         <Filters
           handleFilter={handleFilter}
