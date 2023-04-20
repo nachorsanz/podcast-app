@@ -13,12 +13,12 @@ jest.mock('react-router-dom', () => {
 
 describe('Header component', () => {
   it('should be render', () => {
-    const { getByTestId } = render(<Header> HEADER </Header>);
+    const { getByTestId } = render(<Header isLoading> HEADER </Header>);
     expect(getByTestId('header-component')).toBeInTheDocument();
   });
 
   it('should be render with children', () => {
-    const { getByText } = render(<Header> HEADER </Header>);
+    const { getByText } = render(<Header isLoading> HEADER </Header>);
     expect(getByText('HEADER')).toBeInTheDocument();
   });
 });

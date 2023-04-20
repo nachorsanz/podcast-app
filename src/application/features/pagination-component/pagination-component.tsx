@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import { PodcastType } from '../../../domain/models/podcast';
+import { MAIN_BLUE, MAIN_WHITE, SECONDARY_BLUE } from '../../../domain/services/constants/constants';
 
 const paginationContainerStyle = css`
   display: flex;
@@ -10,8 +11,8 @@ const paginationContainerStyle = css`
 `;
 
 const paginationButtonStyle = css`
-  background-color: #007aff;
-  color: #fff;
+  background-color: ${MAIN_BLUE};
+  color: ${MAIN_WHITE};
   font-size: 16px;
   border-radius: 5px;
   padding: 10px 20px;
@@ -25,7 +26,7 @@ const paginationButtonStyle = css`
   }
 
   &:hover:not(:disabled) {
-    background-color: #0062cc;
+    background-color: ${SECONDARY_BLUE};
   }
 
   &:active:not(:disabled) {

@@ -5,6 +5,7 @@ import PodcastInfo from '../features/podcast-info/podcast-info-component';
 import Header from '../features/header-component/header-component';
 import Card from '../features/card-component/card-component';
 import { sanitizeHtml } from '../../domain/services/utils/utils';
+import { MAIN_BLUE, MAIN_WHITE, SECONDARY_BLUE } from '../../domain/services/constants/constants';
 
 const containerStyle = css`
   display: flex;
@@ -56,9 +57,9 @@ const buttonContainerStyle = css`
 `;
 
 const buttonStyle = css`
-  background-color: #007aff;
-  border: 1px solid #007aff;
-  color: #fff;
+  background-color: ${MAIN_BLUE};
+  border: 1px solid ${MAIN_BLUE};
+  color: ${MAIN_WHITE};
   border-radius: 5px;
   padding: 10px;
   margin: 10px;
@@ -66,8 +67,8 @@ const buttonStyle = css`
   font-weight: bold;
   cursor: pointer;
   &:hover {
-    background-color: #0062cc;
-    border: 1px solid #0062cc;
+    background-color: ${SECONDARY_BLUE};
+    border: 1px solid ${SECONDARY_BLUE};
   }
 `;
 

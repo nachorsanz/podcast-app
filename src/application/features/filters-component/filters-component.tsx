@@ -1,5 +1,6 @@
 import { ChangeEvent } from 'react';
 import { css } from '@emotion/react';
+import { MAIN_BLUE, MAIN_WHITE } from '../../../domain/services/constants/constants';
 const filtersContainerStyle = css`
   display: flex;
   width: 100%;
@@ -28,9 +29,23 @@ const filterInputStyle = css`
 
   &:focus {
     outline: none;
-    border: 1px solid #007aff;
+    border: 1px solid ${MAIN_BLUE};
   }
 `;
+
+const totalTitleStyle = css`
+  font-size: 16px;
+  font-weight: 600;
+  color: ${MAIN_WHITE};
+  width: 40px;
+  height: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${MAIN_BLUE};
+  border-radius: 5px;
+`
 interface FiltersProps {
   total: number;
   filter: string;
@@ -42,19 +57,7 @@ const Filters = ({ total, filter, handleFilter }: FiltersProps) => {
     <div css={filtersContainerStyle} data-testid="filters-component">
       <div css={filtersTopRowStyle}>
         <span
-          css={{
-            fontSize: 16,
-            fontWeight: 600,
-            color: '#fff',
-            width: '40px',
-            height: '20px',
-            textAlign: 'center',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: '#007aff',
-            borderRadius: '5px',
-          }}
+          css={totalTitleStyle}
         >
           {total}
         </span>

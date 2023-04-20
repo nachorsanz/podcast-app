@@ -1,12 +1,13 @@
 import { css } from '@emotion/react';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../spinner-component/spinner-component';
+import { MAIN_BLUE, MAIN_WHITE } from '../../../domain/services/constants/constants';
 
 const headerStyle = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fff;
+  background-color: ${MAIN_WHITE};
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   position: fixed;
   height: 60px;
@@ -17,7 +18,7 @@ const headerStyle = css`
   & > h1 {
     margin: 0;
     padding: 0 20px;
-    color: #007aff;
+    color: ${MAIN_BLUE};
   }
 `;
 
